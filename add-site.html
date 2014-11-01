@@ -66,12 +66,21 @@
           featureGroup: featureGroup
         },
         draw: {
-          polygon: true,
+          polygon: {
+            allowIntersection: false, // Restricts shapes to simple polygons
+            drawError: {
+                color: '#E4C06C', // Color the shape will turn when intersects
+                message: '<strong>Oopsies<strong> borders can\'t intersect' // Message that will show when intersect
+            },
+            shapeOptions: {
+                color: '#D94A66'
+            }
+        },
           polyline: false,
           rectangle: false,
           circle: false,
           marker: false
-        }
+        },
       }).addTo(map);
       
       drawControl.setPosition( 'bottomleft' );
