@@ -21,6 +21,16 @@
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
 <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
   
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-minimap/v1.0.0/Control.MiniMap.css' rel='stylesheet' />
+  
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />
+<!--[if lt IE 9]>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
+<![endif]-->
+
+  
     <!--<div class="ui header"><h2>Active Sites</h2></div>!-->
     <div class="ui grid">
       <div class="column">
@@ -42,11 +52,21 @@
       L.mapbox.accessToken = 'pk.eyJ1IjoiYmxhc3Rlcm50IiwiYSI6ImlwalZmdUkifQ.TJCtxxyNmRhvH-17afmGng';
       // Create a map in the div #map
       
-      var geocoder = L.mapbox.geocoder('mapbox.places-v1'),
+      
       map = L.mapbox.map('map', 'blasternt.cddf600d',  {zoomControl: false} );
-      new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
+      
+      var geocoder = L.mapbox.geocoder('mapbox.places-v1');
       
       geocoder.query('Geneva, Switzerland', showMap);
+      var geocoderControl = L.mapbox.geocoderControl('mapbox.places-v1', {
+        keepOpen: true
+      });
+          
+      geocoderControl.addTo(map);
+      
+      geocoderControl.setPosition( 'bottomleft' );
+      
+      new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
       
       function showMap(err, data) {
         // The geocoder can return an area, like a city, or a
@@ -61,10 +81,6 @@
       
       var featureGroup = L.featureGroup().addTo(map);
       
-      var geocoderControl = L.mapbox.geocoderControl('mapbox.places-v1');
-geocoderControl.addTo(map);
-      
-      geocoderControl.setPosition( 'bottomleft' );
 
       var drawControl = new L.Control.Draw({
         edit: {
@@ -88,7 +104,7 @@ geocoderControl.addTo(map);
         },
       }).addTo(map);
       
-      drawControl.setPosition( 'bottomleft' );
+      drawControl.setPosition( 'bottomright' );
 
       map.on('draw:created', showPolygonArea);
       map.on('draw:edited', showPolygonAreaEdited);
@@ -102,9 +118,17 @@ geocoderControl.addTo(map);
         //e.className="dodged";
         featureGroup.clearLayers();
         featureGroup.addLayer(e.layer);
-        e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');
+        e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>' );
         e.layer.openPopup();
       }
+      
+      //var locator = L.control.locate().addTo(map);
+      //locator.setPosition( 'bottomleft' );
+      
+//      var minimap = new L.Control.MiniMap(L.mapbox.tileLayer('examples.map-i86nkdio'))
+//            .addTo(map);
+//      
+//      minimap.setPosition( 'bottomright' );
     </script>
 </body>
 
