@@ -1,0 +1,13 @@
+@pink: #D94A66;
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  height: 100%;
+}
+
+#submit {
+    background-color: @pink;
+    color: white;
+}
