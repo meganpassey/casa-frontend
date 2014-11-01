@@ -1,44 +1,75 @@
 <!doctype html>
 <html lang="en">
-    <div id="menu" class="ui inverted red menu">
-  <a class="item">Home</a>
-  <a class="item">username</a>
-  <a class="right menu">
-    <div class = "item" >Log out</div></a>
-</div>
 <head>
     <title>CaSa CampSafe - Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/casa.css">
     <link rel="stylesheet" type="text/css" href="semantic/packaged/css/semantic.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/sorttable.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <script src="semantic/packaged/javascript/semantic.js"></script>
 </head>
 <body>
     <!--<div class="ui header"><h2>Active Sites</h2></div>!-->
-    <div class="ui header"><h2>All sites</h2></div>
-    <table class="ui table segment">
-        <thead>
-            <tr><th>Name</th>
-                <th>Date Added</th>
-                <th>Date Modified</th>
-                <th>Number of Records</th>
-                <th>Preview</th>
-                <th>Download</th>
-                </tr>
-        </thead>
-        <tbody>
-            <tr><th>Zataari</th>
-            <th>01 Nov 2014</th>
-            <th>01 Nov 2014</th>
-            <th>3</th>
-            <th class="ui icon button"><i class="icon unhide"></i></th>
-            <th id="submit" class="ui icon button"><i class="icon download disk"></i></th>
-            </tr>
-        </tbody>
+    <div id="menu" class="ui inverted red menu">
+      <a class="item"><i class="home icon"></i>Home</a>
+      
+      <div class="right menu">
+        <a class="item"><i class="user icon"></i>Username</a>
+        <a class = "item" ><i class="key icon"></i>Log Out</a>
+      </div>
+    </div>
+    <div class="ui page grid overview segment">
+      <div class="column">
+      <div class="ui header"><h2>All sites</h2></div>
+      <table class="ui basic sortable padded table segment">
+          <thead>
+              <tr><th class="sorttable_nosort"></th>
+                  <th>Name</th>
+                  <th>Added</th>
+                  <th>Updated</th>
+                  <th># Records</th>
+                  <th class="sorttable_nosort"></th>
+                  <th class="sorttable_nosort"></th>
+                  </tr>
+          </thead>
+          <tbody>
+                <td> <div class="basic circular ui icon button"> <i class="icon pin"></i></div></td>
+                  <th>Zataari</th>
+                  <td>31.10.2014</td>
+                  <td>01.11.2014</td>
+                  <td>3</td>
+                  <td> <div class="basic circular ui icon button"> <i class="icon unhide"></i></div></td>
+                <td> <div class="red circular ui icon button"> <i class="icon download disk"></i> </div></td>
+              </tr>
+                <td> <div class="basic circular ui icon button"> <i class="icon pin"></i></div></td>
+                  <th>CERN</th>
+                  <td>29.10.2014</td>
+                  <td>01.11.2014</td>
+                  <td>18</td>
+                  <td> <div class="basic circular ui icon button"> <i class="icon unhide"></i></div></td>
+                <td> <div class="red circular ui icon button"> <i class="icon download disk"></i> </div></td>
+              </tr>
+          </tbody>
+          <tfoot>
+            <tr><th colspan="6">
+            <div id="submit" class="ui blue labeled icon button"><i class="plus icon">  </i> Add Site</div>
+          </th>
+        </tr></tfoot>
+      </table>
+      </div>
+  </div>
+<!--
+  <script type="text/javascript">
+      $(function() {
+          $('thead th.date').data('sortBy', function(th, td, tablesort) {
+    return new Date(td.text());
+});
+          $('table').tablesort();
 
-    </table>
-    <div class="ui button"id="submit" >Map a new site</div>
+      });
+  </script>
+-->
 </body>
 
 </html>
