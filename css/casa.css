@@ -12,6 +12,9 @@ body {
 #menu {
     background-color: #D94A66;
     color: white;
+    z-index: 1000; 
+    position: absolute; 
+    width: 97% }
 }
 
 #submit {
