@@ -33,3 +33,7 @@ body {
 .leaflet-bottom .leaflet-control {
   margin-bottom: 20px;
 }
+
+.dodged {
+  mix-blend-mode: 'color-dodge'
+}

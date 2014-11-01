@@ -60,6 +60,11 @@
       }
       
       var featureGroup = L.featureGroup().addTo(map);
+      
+      var geocoderControl = L.mapbox.geocoderControl('mapbox.places-v1');
+geocoderControl.addTo(map);
+      
+      geocoderControl.setPosition( 'bottomleft' );
 
       var drawControl = new L.Control.Draw({
         edit: {
@@ -94,6 +99,7 @@
         });
       }
       function showPolygonArea(e) {
+        //e.setAttribute(class, 'dodged');
         featureGroup.clearLayers();
         featureGroup.addLayer(e.layer);
         e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');
