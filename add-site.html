@@ -74,6 +74,8 @@
           marker: false
         }
       }).addTo(map);
+      
+      drawControl.setPosition( 'bottomleft' );
 
       map.on('draw:created', showPolygonArea);
       map.on('draw:edited', showPolygonAreaEdited);
