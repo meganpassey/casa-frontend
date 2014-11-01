@@ -22,6 +22,10 @@ body {
     color: white;
 }
 
+#padded {
+    margin-top: 60px;
+}
+
 .leaflet-left .leaflet-control {
   margin-left: 20px;
 }
