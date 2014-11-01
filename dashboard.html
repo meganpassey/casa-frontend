@@ -1,5 +1,11 @@
 <!doctype html>
 <html lang="en">
+    <div id="menu" class="ui inverted red menu">
+  <a class="item">Home</a>
+  <a class="item">username</a>
+  <a class="right menu">
+    <div class = "item" >Log out</div></a>
+</div>
 <head>
     <title>CaSa CampSafe - Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/casa.css">
@@ -9,10 +15,30 @@
     <script src="semantic/packaged/javascript/semantic.js"></script>
 </head>
 <body>
-    <div>My Sites</div>
-    <div>List of all sites</div>
-    <div>testing</div>
-    <div class="ui teal button">Map a new site</div>
+    <!--<div class="ui header"><h2>Active Sites</h2></div>!-->
+    <div class="ui header"><h2>All sites</h2></div>
+    <table class="ui table segment">
+        <thead>
+            <tr><th>Name</th>
+                <th>Date Added</th>
+                <th>Date Modified</th>
+                <th>Number of Records</th>
+                <th>Preview</th>
+                <th>Download</th>
+                </tr>
+        </thead>
+        <tbody>
+            <tr><th>Zataari</th>
+            <th>01 Nov 2014</th>
+            <th>01 Nov 2014</th>
+            <th>3</th>
+            <th class="ui icon button"><i class="icon unhide"></i></th>
+            <th id="submit" class="ui icon button"><i class="icon download disk"></i></th>
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="ui button"id="submit" >Map a new site</div>
 </body>
 
 </html>
