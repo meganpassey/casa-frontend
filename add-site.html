@@ -99,7 +99,7 @@ geocoderControl.addTo(map);
         });
       }
       function showPolygonArea(e) {
-        //e.setAttribute(class, 'dodged');
+        //e.className="dodged";
         featureGroup.clearLayers();
         featureGroup.addLayer(e.layer);
         e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>');

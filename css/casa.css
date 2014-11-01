@@ -35,5 +35,5 @@ body {
 }
 
 .dodged {
-  mix-blend-mode: 'color-dodge'
+  background: black;
 }

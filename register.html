@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+      <!--<div class="ui header"><h2>Active Sites</h2></div>!-->
+    <title>CaSa CampSafe</title>
+    <link rel="stylesheet" type="text/css" href="css/casa.css">
+    <link rel="stylesheet" type="text/css" href="semantic/packaged/css/semantic.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="semantic/packaged/javascript/semantic.js"></script>
+</head>
+<body>
+    <div class="ui grid">
+      <div class="column">
+        <div id="menu" class="ui inverted red menu">
+          <a href="dashboard.html" class="item"><i class="tasks icon"></i>Dashboard</a>
+          <div class="right menu">
+            <a class="item"><i class="user icon"></i>Username</a>
+            <a class = "item" ><i class="key icon"></i>Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="padded" class="ui page grid overview segment">
+      <div class="column">
+    <div class="ui page grid stackable relaxed segment">
+    <div class="ten wide column">
+      <div class="ui header"><h2>Sign Up</h2></div>
+    <div class="ui form segment">
+      <div class="field">
+<!--        <label>Username</label>-->
+        <div class="ui left labeled icon input">
+          <input id="username" type="text" placeholder="Username">
+          <i class="user icon"></i>
+          <div class="ui">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+<!--        <label>Password</label>-->
+        <div class="ui left labeled icon input">
+          <input id="password" type="password" placeholder="Password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <div class="field">
+<!--        <label>Confirm Password</label>-->
+        <div class="ui left labeled icon input">
+          <input id="confirm-password" type="password" placeholder="Confirm Password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      </div>
+      <div id="submit" class="ui pink submit button">Sign Up</div>
+      <a href="dashboard.html" class="ui gray button">Log In</a>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
