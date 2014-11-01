@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>CaSa CampSafe - Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/casa.css">
+    <link rel="stylesheet" type="text/css" href="semantic/packaged/css/semantic.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/sorttable.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="semantic/packaged/javascript/semantic.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+    <style>
+      body { margin:0; padding:0; overflow: hidden; }
+      #map { position:absolute; top:0; bottom:0; width:100%; z-index: 0}
+    </style>
+</head>
+<body>
+    <!--<div class="ui header"><h2>Active Sites</h2></div>!-->
+    <div id="map"></div>
+    <div class="ui grid">
+      <div class="column">
+        <div id="menu" class="ui inverted red menu">
+          <a class="item"><i class="home icon"></i>Home</a>
+
+          <div class="right menu">
+            <a class="item"><i class="user icon"></i>Username</a>
+            <a class = "item" ><i class="key icon"></i>Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+      // Provide your access token
+      L.mapbox.accessToken = 'pk.eyJ1IjoiYmxhc3Rlcm50IiwiYSI6ImlwalZmdUkifQ.TJCtxxyNmRhvH-17afmGng';
+      // Create a map in the div #map
+      
+      var geocoder = L.mapbox.geocoder('mapbox.places-v1'),
+      map = L.mapbox.map('map', 'blasternt.cddf600d',  {zoomControl: false} );
+      new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
+      
+      geocoder.query('Middle East', showMap);
+    </script>
+</body>
+
+</html>
+

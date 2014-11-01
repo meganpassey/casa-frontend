@@ -16,3 +16,11 @@ body {
     background-color: #D94A66;
     color: white;
 }
+
+.leaflet-left .leaflet-control {
+  margin-left: 20px;
+}
+
+.leaflet-bottom .leaflet-control {
+  margin-bottom: 20px;
+}
