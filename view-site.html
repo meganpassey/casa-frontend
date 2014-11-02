@@ -29,7 +29,7 @@
 <!--[if lt IE 9]>
   <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.21.0/L.Control.Locate.ie.css' rel='stylesheet' />
 <![endif]-->
-  
+
   
     <!--<div class="ui header"><h2>Active Sites</h2></div>!-->
     <div class="ui grid">
@@ -41,25 +41,9 @@
             <a class = "item" ><i class="key icon"></i>Log Out</a>
           </div>
         </div>
-        <div  id="settings-pane" class="ui form segment">
-          <div class="field">
-            <div id="name-input-style" class="ui left labeled input">
-              <input id="name-input" type="text" placeholder="Site Name" required>
-            </div>
-          </div>
-          <div class="ui error message">
-            <div class="header">We noticed some issues</div>
-          </div>
-          <div class="ui buttons">
-            <div id="new-button" class="ui button">New</div>
-            <div id="edit-button" class="ui button">Edit</div>
-          </div>
-          <div id="submit" class="ui disabled red submit button">Submit</div>
-        </div>
       </div>
-    </div>  
-  <div id="map">
-  </div>
+    </div>
+    <div id="map"></div>
 
     
 
@@ -80,9 +64,9 @@
           
       geocoderControl.addTo(map);
       
-      geocoderControl.setPosition( 'bottomright' );
+      geocoderControl.setPosition( 'bottomleft' );
       
-      new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
+      new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
       
       function showMap(err, data) {
         // The geocoder can return an area, like a city, or a
@@ -97,10 +81,13 @@
       
       var featureGroup = L.featureGroup().addTo(map);
       
-      var json; 
-      var element;
 
-      var polygonDrawer = new L.Draw.Polygon(map, {
+      var drawControl = new L.Control.Draw({
+        edit: {
+          featureGroup: featureGroup
+        },
+        draw: {
+          polygon: {
             allowIntersection: false, // Restricts shapes to simple polygons
             drawError: {
                 color: '#E4C06C', // Color the shape will turn when intersects
@@ -109,12 +96,15 @@
             shapeOptions: {
                 color: '#D94A66'
             }
-          }
-        );
+        },
+          polyline: false,
+          rectangle: false,
+          circle: false,
+          marker: false
+        },
+      }).addTo(map);
       
-      var editor = new L.EditToolbar.Edit(map, {
-                featureGroup: featureGroup
-            })
+      drawControl.setPosition( 'bottomright' );
 
       map.on('draw:created', showPolygonArea);
       map.on('draw:edited', showPolygonAreaEdited);
@@ -124,29 +114,12 @@
           showPolygonArea({ layer: layer });
         });
       }
-      var polythere = false;
-      var submitOk = false;
       function showPolygonArea(e) {
         //e.className="dodged";
         featureGroup.clearLayers();
         featureGroup.addLayer(e.layer);
         e.layer.bindPopup((LGeo.area(e.layer) / 1000000).toFixed(2) + ' km<sup>2</sup>' );
         e.layer.openPopup();
-        element = e;
-        
-        polygonDrawer.disable();
-        newActive = false;
-        polythere = true;
-        $( "#new-button" ).removeClass("active");
-        $( "#new-button" ).text('Clear');
-        if ($('#name-input').val().length > 0 ) {
-          console.log(""+$('#name-input').val().length);
-          $( "#submit" ).removeClass("disabled");
-          submitOk = true;
-        } else {
-          $( "#name-input-style" ).addClass("error");
-        }
-        
       }
       
       //var locator = L.control.locate().addTo(map);
@@ -156,73 +129,6 @@
 //            .addTo(map);
 //      
 //      minimap.setPosition( 'bottomright' );
-      var newActive = false;
-      var editActive = false;
-      
-      
-      $( "#new-button" ).click(function() {
-        if(newActive) {
-          polygonDrawer.disable();
-          newActive = false;
-          polythere = false;
-          $( "#new-button" ).removeClass("active");
-        } else {
-          $( "#new-button" ).text('New');
-          submitOk = false;
-          $( "#submit" ).addClass("disabled");
-          featureGroup.clearLayers();
-          polygonDrawer.enable();
-          newActive = true;
-          $( "#new-button" ).addClass("active");
-          if(editActive) {
-            editor.disable();
-            editActive = false;
-          $( "#edit-button" ).removeClass("active");
-          }
-        }
-      });
-      
-      $( "#edit-button" ).click(function() {
-        if(editActive) {
-          editor.disable();
-          editActive = false;
-          $( "#edit-button" ).removeClass("active");
-        } else {
-          editor.enable();
-          editActive = true;
-          $( "#edit-button" ).addClass("active");
-          if(newActive) {
-            polygonDrawer.disable();
-            newActive = false;
-            $( "#new-button" ).removeClass("active");
-          }
-        }
-      });
-      
-      var inputfilled;
-      
-      $('#name-input').on('keypress keydown keyup',function(){
-        inputfilled = $(this).val().length > 0;
-             if (!inputfilled) {
-               submitOk = false; 
-               $( "#submit" ).addClass("disabled");
-             } else {
-               $('#name-input-style').removeClass("error");
-               if (polythere) {
-                 $( "#submit" ).removeClass("disabled");
-                 submitOk = true;
-               }
-             }
-         });
-      
-      $( "#submit" ).click(function() {
-        if(submitOk) {
-          json = e.layer.toGeoJSON();
-          console.log(json);
-        }
-      });
-      
-      
     </script>
 </body>
 

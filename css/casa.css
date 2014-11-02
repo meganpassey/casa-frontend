@@ -17,6 +17,19 @@ body {
     width: 97%
 }
 
+#settings-pane {
+  bottom: 10px;
+  z-index: 1000; 
+  position: absolute; 
+/*  width: 50px*/
+}
+
+#overlay {
+ position: absolute;
+  width: 100%;
+  height: 100%
+}
+
 #submit {
     background-color: #D94A66;
     color: white;
